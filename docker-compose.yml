@@ -1,8 +1,9 @@
 services:
   app:
     build: .
-    command: npm start
+    command: npm run dev
     ports: 
       - "3000:3000"
     volumes:
-      - .:/usr/app
+      - ./index.js:/usr/app/index.js         # Só monta o código
+      - /usr/app/node_modules  

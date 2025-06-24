@@ -1,12 +1,14 @@
-FROM node:alpine
+FROM node:20
 
 WORKDIR /usr/app
 
-COPY package*.json ./
-RUN npm install
+RUN npm init -y && \
+    npm pkg set type="module" && \
+    npm pkg set scripts.dev="nodemon --legacy-watch index.js" && \
+    npm install express nodemon
 
 COPY . .
 
 EXPOSE 3000
 
-CMD ["npm", "start"]
+CMD ["npm", "run", "dev"]
